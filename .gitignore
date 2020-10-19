@@ -1,0 +1,8 @@
+# Project exclude paths
+/p2p-common/target/
+/p2p-dataService/target/
+/p2p-exterface/target/
+/p2p-mybatisGenerator/target/
+/p2p-pay/target/
+/p2p-timer/target/
+/p2p-web/target/
