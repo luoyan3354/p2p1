@@ -11,6 +11,14 @@ http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
     <!-- 配置注册中心 -->
     <dubbo:registry protocol="zookeeper" address="192.168.157.128:2181"/>
 
+
     <!--消费历史年化收益率的Service接口-->
     <dubbo:reference id="loanInfoService" interface="com.hust.p2p.service.loan.LoanInfoService" version="1.0.0" check="false"></dubbo:reference>
+
+    <!--消费平台注册总人数的service接口-->
+    <dubbo:reference id="userService" interface="com.hust.p2p.service.user.UserService" version="1.0.0" check="false"></dubbo:reference>
+
+    <!--消费平台投资总金额的service接口-->
+    <dubbo:reference id="bidInfoService" interface="com.hust.p2p.service.loan.BidInfoService" version="1.0.0" check="false"></dubbo:reference>
+
 </beans>

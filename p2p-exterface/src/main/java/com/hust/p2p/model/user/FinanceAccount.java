@@ -1,6 +1,8 @@
 package com.hust.p2p.model.user;
 
-public class FinanceAccount {
+import java.io.Serializable;
+
+public class FinanceAccount implements Serializable {
     private Integer id;
 
     private Integer uid;

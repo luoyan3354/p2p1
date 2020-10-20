@@ -103,4 +103,10 @@
       bid_status = #{bidStatus,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!--mapper.xml层获取平台累计投资总金额-->
+  <select id="selectAllBidMoney" resultType="java.lang.Double">
+    select sum(bid_money) from b_bid_info
+  </select>
+
 </mapper>

@@ -14,4 +14,10 @@ public interface BidInfoMapper {
     int updateByPrimaryKeySelective(BidInfo record);
 
     int updateByPrimaryKey(BidInfo record);
+
+    /**
+     * mapper层获取平台累计投资金额
+     * @return
+     */
+    Double selectAllBidMoney();
 }
