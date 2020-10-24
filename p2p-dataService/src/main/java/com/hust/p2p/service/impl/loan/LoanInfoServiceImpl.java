@@ -2,12 +2,15 @@ package com.hust.p2p.service.impl.loan;
 
 import com.hust.p2p.common.constant.Constants;
 import com.hust.p2p.mapper.loan.LoanInfoMapper;
+import com.hust.p2p.model.loan.LoanInfo;
 import com.hust.p2p.service.loan.LoanInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 //Autowired是从spring的容器中取出与之类型同源的对象，赋给它。
@@ -20,6 +23,7 @@ public class LoanInfoServiceImpl implements LoanInfoService {
     @Autowired
     private RedisTemplate<Object, Object> redisTemplate;
 
+    //获取历史年化收益率
     @Override
     public Double queryHistoryAverageRate() {
 
@@ -41,5 +45,11 @@ public class LoanInfoServiceImpl implements LoanInfoService {
         }
 
         return historyAverageRate;
+    }
+
+    //获取产品的列表，根据产品的类型、页码和每页展示几个
+    @Override
+    public List<LoanInfo> queryLoanInfoListByProductType(Map<String, Object> paramMap) {
+        return loanInfoMapper.selectLoanInfoByPage(paramMap);
     }
 }

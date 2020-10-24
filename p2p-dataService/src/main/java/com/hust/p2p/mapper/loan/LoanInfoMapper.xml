@@ -238,4 +238,20 @@
     select cast(avg(rate) as DECIMAL(10,2)) from b_loan_info
   </select>
 
+  <!--分页查询产品信息（产品类型、页码、每页展示多少个-->
+  <select id="selectLoanInfoByPage" resultMap="BaseResultMap">
+    select
+        <include refid="Base_Column_List"/>
+    from
+        b_loan_info
+    <where>
+      <if test="productType != null">
+        product_type = #{productType}
+      </if>
+    </where>
+    order by
+        release_time desc
+    limit #{currentPage},#{pageSize}
+  </select>
+
 </mapper>
