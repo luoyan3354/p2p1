@@ -1,6 +1,7 @@
 package com.hust.p2p.service.loan;
 
 import com.hust.p2p.model.loan.LoanInfo;
+import com.hust.p2p.model.vo.PaginationVO;
 
 import java.util.List;
 import java.util.Map;
@@ -19,4 +20,11 @@ public interface LoanInfoService {
      * @return
      */
     List<LoanInfo> queryLoanInfoListByProductType(Map<String, Object> paramMap);
+
+    /**
+     * 分页查询产品信息列表和总记录数
+     * @param paramMap
+     * @return
+     */
+    PaginationVO<LoanInfo> queryLoanInfoByPage(Map<String, Object> paramMap);
 }

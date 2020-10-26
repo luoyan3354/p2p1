@@ -32,4 +32,11 @@ public interface LoanInfoMapper {
      * @return
      */
     List<LoanInfo> selectLoanInfoByPage(Map<String, Object> paramMap);
+
+    /**
+     * 根据产品类型查出总记录数
+     * @param paramMap
+     * @return
+     */
+    Long selectTotal(Map<String, Object> paramMap);
 }

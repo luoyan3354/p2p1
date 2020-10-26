@@ -254,4 +254,17 @@
     limit #{currentPage},#{pageSize}
   </select>
 
+  <!--根据产品类型获取产品的总记录数-->
+  <select id="selectTotal" resultType="java.lang.Long">
+    select
+     count(*)
+    from
+     b_loan_info
+     <where>
+       <if test="productType != null">
+         product_type = #{productType}
+       </if>
+     </where>
+  </select>
+
 </mapper>

@@ -3,6 +3,7 @@ package com.hust.p2p.service.impl.loan;
 import com.hust.p2p.common.constant.Constants;
 import com.hust.p2p.mapper.loan.LoanInfoMapper;
 import com.hust.p2p.model.loan.LoanInfo;
+import com.hust.p2p.model.vo.PaginationVO;
 import com.hust.p2p.service.loan.LoanInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -51,5 +52,21 @@ public class LoanInfoServiceImpl implements LoanInfoService {
     @Override
     public List<LoanInfo> queryLoanInfoListByProductType(Map<String, Object> paramMap) {
         return loanInfoMapper.selectLoanInfoByPage(paramMap);
+    }
+
+    @Override
+    public PaginationVO<LoanInfo> queryLoanInfoByPage(Map<String, Object> paramMap) {
+
+        PaginationVO<LoanInfo> paginationVO = new PaginationVO<>();
+
+        //查询总记录数
+        Long total = loanInfoMapper.selectTotal(paramMap);
+        paginationVO.setTotal(total);//根据产品类型查出记录数
+
+        //查询显示数据
+        List<LoanInfo> loanInfoList = loanInfoMapper.selectLoanInfoByPage(paramMap);
+        paginationVO.setDataList(loanInfoList);
+
+        return paginationVO;
     }
 }
