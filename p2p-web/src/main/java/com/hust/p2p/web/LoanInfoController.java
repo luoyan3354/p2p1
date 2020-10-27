@@ -1,7 +1,9 @@
 package com.hust.p2p.web;
 
+import com.hust.p2p.model.loan.BidInfo;
 import com.hust.p2p.model.loan.LoanInfo;
 import com.hust.p2p.model.vo.PaginationVO;
+import com.hust.p2p.service.loan.BidInfoService;
 import com.hust.p2p.service.loan.LoanInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -19,6 +22,10 @@ public class LoanInfoController {
     @Autowired
     private LoanInfoService loanInfoService;
 
+    @Autowired
+    private BidInfoService bidInfoService;
+
+    //显示更多的产品和投资排行榜
     @RequestMapping(value = "/loan/loan")
     public String loan(HttpServletRequest request, Model model,
                        @RequestParam(value = "ptype",required = false) Integer ptype,
@@ -67,6 +74,31 @@ public class LoanInfoController {
             model.addAttribute("ptype", ptype);
         }
 
+        //TODO
+        //投资排行榜
+
         return "loan";
+    }
+
+
+    //根据单个产品的id查看产品的完整信息，和其关联的投资信息，一个产品是有多条投资记录的
+    //投资记录中显示用户表的电话号码（做left join左连接）显示投资记录的完整信息和与之匹配的用户的信息
+    @RequestMapping(value = "loan/loanInfo")
+    public String loanInfo(HttpServletRequest request, Model model,
+                           @RequestParam(value = "id", required = true) Integer id){
+
+        //根据产品标识表示获取产品的详情
+        LoanInfo loanInfo = loanInfoService.queryLoanInfoById(id);
+
+        //根据产品id获取这个产品的所有投资记录
+        List<BidInfo> bidInfoList = bidInfoService.queryBidInfoListByLoanId(id);
+
+        model.addAttribute("loanInfo", loanInfo);
+        model.addAttribute("bidInfoList", bidInfoList);
+
+        //TODO
+        //获取当前用户的账户可用余额
+
+        return "loanInfo";
     }
 }

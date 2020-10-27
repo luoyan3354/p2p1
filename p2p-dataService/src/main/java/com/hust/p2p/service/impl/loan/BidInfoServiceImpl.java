@@ -2,12 +2,14 @@ package com.hust.p2p.service.impl.loan;
 
 import com.hust.p2p.common.constant.Constants;
 import com.hust.p2p.mapper.loan.BidInfoMapper;
+import com.hust.p2p.model.loan.BidInfo;
 import com.hust.p2p.service.loan.BidInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.BoundValueOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Service("bidInfoServiceImpl")
@@ -38,5 +40,10 @@ public class BidInfoServiceImpl implements BidInfoService {
         }
 
         return allBidMoney;
+    }
+
+    @Override
+    public List<BidInfo> queryBidInfoListByLoanId(Integer loanId) {
+        return bidInfoMapper.selectBidInfoListByLoanId(loanId);
     }
 }

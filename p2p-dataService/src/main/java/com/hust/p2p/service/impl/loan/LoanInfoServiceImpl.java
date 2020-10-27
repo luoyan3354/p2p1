@@ -69,4 +69,10 @@ public class LoanInfoServiceImpl implements LoanInfoService {
 
         return paginationVO;
     }
+
+    //根据产品标识获取产品详情
+    @Override
+    public LoanInfo queryLoanInfoById(Integer id) {
+        return loanInfoMapper.selectByPrimaryKey(id);
+    }
 }

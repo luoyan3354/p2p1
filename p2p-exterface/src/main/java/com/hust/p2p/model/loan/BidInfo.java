@@ -1,5 +1,7 @@
 package com.hust.p2p.model.loan;
 
+import com.hust.p2p.model.user.User;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,6 +17,17 @@ public class BidInfo implements Serializable {
     private Date bidTime;
 
     private Integer bidStatus;
+
+    //为了返回一条产品的详细信息和与之关联的多条投资记录。投资记录中要有用户的信息：电话号码
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Integer getId() {
         return id;

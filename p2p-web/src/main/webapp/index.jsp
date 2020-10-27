@@ -99,7 +99,7 @@
 							<p class="text2">剩余可投金额</p>
 						</li>
 						<li class="box4">
-							<a href="loanInfo.jsp" class="go-invest">立即投资</a>
+							<a href="loan/loanInfo?id=${xLoanInfo.id}" class="go-invest">立即投资</a>
 						</li>
 					</ul>
 				</div>
@@ -139,7 +139,7 @@
 					</div>
 					<div class="pro-intr"><p>优选计划项目，投资回报周期1个月，起点低，适合短期资金周转、对流动性要求高的投资人。</p></div>
 					<div class="pro-btn">
-						<a href="loanInfo.jsp" class="btn-1">立即投资</a>
+						<a href="loan/loanInfo?id=${uLoanInfo.id}" class="btn-1">立即投资</a>
 					</div>
 				</div>
 			</div>
@@ -177,7 +177,7 @@
 						</div>
 					</div>
 					<div class="pro-btn">
-						<a href="loan/loanInfo?id=${loanInfo.id}" class="btn-1">立即投资</a>
+						<a href="loan/loanInfo?id=${sLoanInfo.id}" class="btn-1">立即投资</a>
 					</div>
 				</div>
 			</div>

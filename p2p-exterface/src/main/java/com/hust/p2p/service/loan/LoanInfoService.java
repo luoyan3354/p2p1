@@ -27,4 +27,11 @@ public interface LoanInfoService {
      * @return
      */
     PaginationVO<LoanInfo> queryLoanInfoByPage(Map<String, Object> paramMap);
+
+    /**
+     * 根据产品标识表示获取产品的详情
+     * @param id
+     * @return
+     */
+    LoanInfo queryLoanInfoById(Integer id);
 }

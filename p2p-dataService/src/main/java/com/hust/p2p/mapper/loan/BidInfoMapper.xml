@@ -9,6 +9,26 @@
     <result column="bid_time" property="bidTime" jdbcType="TIMESTAMP" />
     <result column="bid_status" property="bidStatus" jdbcType="INTEGER" />
   </resultMap>
+  
+  <resultMap id="BidUserBaseResultMap" type="com.hust.p2p.model.loan.BidInfo">
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="loan_id" property="loanId" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="bid_money" property="bidMoney" jdbcType="DOUBLE" />
+    <result column="bid_time" property="bidTime" jdbcType="TIMESTAMP" />
+    <result column="bid_status" property="bidStatus" jdbcType="INTEGER" />
+    <association property="user" javaType="com.hust.p2p.model.user.User">
+      <id column="id" property="id" jdbcType="INTEGER" />
+      <result column="phone" property="phone" jdbcType="VARCHAR" />
+      <result column="login_password" property="loginPassword" jdbcType="VARCHAR" />
+      <result column="name" property="name" jdbcType="VARCHAR" />
+      <result column="id_card" property="idCard" jdbcType="VARCHAR" />
+      <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+      <result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
+      <result column="header_image" property="headerImage" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+  
   <sql id="Base_Column_List" >
     id, loan_id, uid, bid_money, bid_time, bid_status
   </sql>
@@ -108,5 +128,23 @@
   <select id="selectAllBidMoney" resultType="java.lang.Double">
     select sum(bid_money) from b_bid_info
   </select>
-
+  
+  <!--根据产品标识获取产品的所有投资记录（包含用户的信息）
+      from表a是全部的信息，left join 表b是匹配on的条件的信息
+  -->
+  <select id="selectBidInfoListByLoanId" resultMap="BidUserBaseResultMap">
+    select
+        a.*, b.*
+    from
+        b_bid_info a
+    left join
+        u_user b
+    on
+        a.uid = b.id
+    where
+        loan_id = #{loanId}
+    order by
+        a.bid_time desc
+  </select>
+  
 </mapper>
