@@ -9,7 +9,10 @@
     <result column="bid_time" property="bidTime" jdbcType="TIMESTAMP" />
     <result column="bid_status" property="bidStatus" jdbcType="INTEGER" />
   </resultMap>
-  
+
+
+  <!--返回的对象类型，设计成在bidInfo
+  的基础之上，增加user的属性-->
   <resultMap id="BidUserBaseResultMap" type="com.hust.p2p.model.loan.BidInfo">
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="loan_id" property="loanId" jdbcType="INTEGER" />

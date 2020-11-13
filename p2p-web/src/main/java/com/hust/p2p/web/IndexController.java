@@ -16,6 +16,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+//一上来，先查询三个参数值和三种分类的产品信息。
+// 重点在于select
+//        <include refid="Base_Column_List"/>
+//    from
+//        b_loan_info
+//    <where>
+//      <if test="productType != null">
+//        product_type = #{productType}
+//      </if>
+//    </where>
+//    order by
+//        release_time desc
+//    limit #{currentPage},#{pageSize}
 @Controller
 public class IndexController {
 
@@ -47,25 +60,26 @@ public class IndexController {
         model.addAttribute(Constants.ALL_BID_MONEY, allBidMoney);
 
         //将以下三个查询看成是一个分页，通过产品类型查出产品的List列表。再通过页码和每页显示几个 显示出
+        //前端显示的是第几页，从1开始；后端sql语句中两个参数，第一个参数是从哪一个开始，第二个参是偏移量，其中第一个参是从0开始
         //loanInfoService.queryLoanInfoListByProductType(产品类型, 页码, 每页显示条数);
 
         //传递参数采用hashMap，将产品类型，页码和每页显示条数封装到map中
         Map<String, Object> paramMap = new HashMap<String, Object>();
-        paramMap.put("currentPage", 0);//将公共相同的参数页码为0（limit关键字为0开始）put到map中
+        paramMap.put("currentPage", 0);//从数据表中的第一个开始，mysql是从初始值为0开始为第一个。
 
         //获取新手宝产品：产品类型：0；显示第1页；每页显示1个
         paramMap.put("productType", Constants.PRODUCT_TYPE_X);
-        paramMap.put("pageSize", 1);
+        paramMap.put("pageSize", 1);//取出一个
         List<LoanInfo> xLoanInfoList = loanInfoService.queryLoanInfoListByProductType(paramMap);
 
         //获取优选产品：产品类型：1；显示第1页；每页显示4个
         paramMap.put("productType", Constants.PRODUCT_TYPE_U);
-        paramMap.put("pageSize", 4);
+        paramMap.put("pageSize", 4);//取出4个
         List<LoanInfo> uLoanInfoList = loanInfoService.queryLoanInfoListByProductType(paramMap);
 
         //获取散标产品：产品类型：2；显示第2页；每页显示8个
         paramMap.put("productType", Constants.PRODUCT_TYPE_S);
-        paramMap.put("pageSize", 8);
+        paramMap.put("pageSize", 8);//取出8个
         List<LoanInfo> sLoanInfoList = loanInfoService.queryLoanInfoListByProductType(paramMap);
 
         model.addAttribute("xLoanInfoList", xLoanInfoList);

@@ -9,7 +9,7 @@ http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
     <!-- 配置应用名称 -->
     <dubbo:application name="p2p"/>
     <!-- 配置注册中心 -->
-    <dubbo:registry protocol="zookeeper" address="192.168.157.128:2181"/>
+    <dubbo:registry protocol="zookeeper" address="192.168.157.129:2181"/>
 
 
     <!--消费历史年化收益率的Service接口-->

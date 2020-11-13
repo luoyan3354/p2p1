@@ -31,4 +31,34 @@ public class Constants {
      * 产品类型：散标2
      */
     public static final Integer PRODUCT_TYPE_S = 2;
+
+    /**
+     * 图形验证码
+     */
+    public static final String CAPTCHA = "captcha";
+
+    /**
+     * 注册时验证手机号有没有被注册过
+     */
+    public static final String ERROR_MESSAGE = "errorMessage";
+
+    /**
+     * 手机号没有被注册的OK状态
+     */
+    public static final Object OK = "OK";
+
+    /**
+     * 成功
+     */
+    public static final String SUCCESS = "SUCCESS";
+
+    /**
+     * 失败
+     */
+    public static final String FAIL = "FAIL";
+
+    /**
+     * 用户
+     */
+    public static final String SESSION_USER = "user";
 }

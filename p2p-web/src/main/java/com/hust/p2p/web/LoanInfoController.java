@@ -25,6 +25,7 @@ public class LoanInfoController {
     @Autowired
     private BidInfoService bidInfoService;
 
+    //通过接收产品类型和前端显示的第几页两个参数，返回总个数和b_loan_info集合
     //显示更多的产品和投资排行榜
     @RequestMapping(value = "/loan/loan")
     public String loan(HttpServletRequest request, Model model,
@@ -44,7 +45,7 @@ public class LoanInfoController {
             currentPage = 1;//前端显示的第几页
         }
 
-        int pageSize = 9;
+        int pageSize = 9;//每页显示9条，这里是写死的
 
         paramMap.put("currentPage", (currentPage - 1) * pageSize);
         paramMap.put("pageSize", pageSize);
@@ -67,7 +68,7 @@ public class LoanInfoController {
         //loanInfo的List集合
         model.addAttribute("loanInfoList", paginationVO.getDataList());
         //当前页码
-        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("currentPage", currentPage);//点击下一页和上一页的时候会用到。
 
         if (ptype != null) {
             //产品类型
@@ -81,7 +82,7 @@ public class LoanInfoController {
     }
 
 
-    //根据单个产品的id查看产品的完整信息，和其关联的投资信息，一个产品是有多条投资记录的
+    //根据单个产品的id查看产品的完整信息，和其关联的投资信息。一个产品是有多条投资记录的。
     //投资记录中显示用户表的电话号码（做left join左连接）显示投资记录的完整信息和与之匹配的用户的信息
     @RequestMapping(value = "loan/loanInfo")
     public String loanInfo(HttpServletRequest request, Model model,

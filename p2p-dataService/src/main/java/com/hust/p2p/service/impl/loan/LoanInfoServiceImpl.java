@@ -60,8 +60,9 @@ public class LoanInfoServiceImpl implements LoanInfoService {
         PaginationVO<LoanInfo> paginationVO = new PaginationVO<>();
 
         //查询总记录数
+        //根据产品类型查出记录数
         Long total = loanInfoMapper.selectTotal(paramMap);
-        paginationVO.setTotal(total);//根据产品类型查出记录数
+        paginationVO.setTotal(total);
 
         //查询显示数据
         List<LoanInfo> loanInfoList = loanInfoMapper.selectLoanInfoByPage(paramMap);
